@@ -81,12 +81,14 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': str(BASE_DIR / 'db.sqlite3')
+
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'lechnernet_demo',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  
-        'PORT': '3306'
+        'PORT': '3306',
+
     }
 }
 
@@ -129,13 +131,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR,"static"]
+MEDIA_URL = "/image/download/"
+MEDIA_ROOT = BASE_DIR
+
+
+
 
 FIXTURE_DIRS = ['fixtures']
 
 LOGIN_REDIRECT_URL = 'authapp:dashboard'
 LOGIN_URL = 'authapp:login'
 LOGOUT_URL = 'logout'
-
+# USE_TZ = True
 
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
@@ -150,6 +157,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pk1105806@gmail.com'
 EMAIL_HOST_PASSWORD = 'uhrtauahgxxybxww'
 
-#AUTH_USER_MODEL = 'authapp.UserDetails'
+#AUTH_USER_MODEL = 'authapp.UserDetails'    
 AUTHENTICATION_BACKENDS = ['authapp.backends.EmailBackend']
 # STATIC_ROOT = ''

@@ -5,17 +5,17 @@
     <div class="container-fluid page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
         <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
             <div class="mb-24pt mb-sm-0 mr-sm-24pt">
-                <h2 class="mb-0">Update Supplier</h2>
+                <h2 class="mb-0">Update Product</h2>
 
                 <ol class="breadcrumb p-0 m-0">
                     <li class="breadcrumb-item"><a href="{% url 'authapp:dashboard' %}">Home</a></li>
-                    <li class="breadcrumb-item active">Update Supplier </li>
+                    <li class="breadcrumb-item active">Update Product </li>
                 </ol>
             </div>
         </div>
         <div class="row" role="tablist">
             <div class="col-auto border-left">
-                <a href="{% url 'authapp:add_supplier' %}" class="btn btn-accent">New Supplier</a>
+                <a href="{% url 'lechnerapp:add_product' %}" class="btn btn-accent">New Product</a>
             </div>
         </div>
     </div>
@@ -57,59 +57,91 @@
             <div class="flex form-row" style="max-width: 100%">
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Name:</label>
-                        <input type="text" name="name" value="{% if data.name %}{{data.name}}{% endif %}" class="form-control {% if error.name %}is-invalid{% endif %}"  placeholder="Enter name">
-                        {% if error.name %}
-                        <div class="invalid-feedback">{{error.name}}</div>
+                        <label class="form-label" >Product Name:</label>
+                        <input type="text" name="product_name" value="{% if data.product_name %}{{data.product_name}}{% endif %}" class="form-control {% if error.product_name %}is-invalid{% endif %}"  placeholder="Enter Product name">
+                        {% if error.product_name %}
+                        <div class="invalid-feedback">{{error.product_name}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Legal Form:</label>
-                        <input type="text" name="legal_form" value="{% if data.legal_form %}{{data.legal_form}}{% endif %}" class="form-control {% if error.legal_form %}is-invalid{% endif %}"  placeholder="Enter Legal Form">
-                        {% if error.legal_form %}
-                        <div class="invalid-feedback">{{error.legal_form}}</div>
+                        <label class="form-label" >Product Number:</label>
+                        <input type="text" name="product_number" value="{% if data.product_number %}{{data.product_number}}{% endif %}" class="form-control {% if error.product_number %}is-invalid{% endif %}"  placeholder="Enter Product Number">
+                        {% if error.product_number %}
+                        <div class="invalid-feedback">{{error.product_number}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Category:</label>
-                        <input type="text" name="categories" value="{% if data.categories %}{{data.categories}}{% endif %}" class="form-control {% if error.categories %}is-invalid{% endif %}"  placeholder="Enter categories">
-                        {% if error.categories %}
-                        <div class="invalid-feedback">{{error.categories}}</div>
+                        <label class="form-label" >Product Step:</label>
+                        <input type="text" name="product_step" value="{% if data.product_step %}{{data.product_step}}{% endif %}" class="form-control {% if error.product_step %}is-invalid{% endif %}"  placeholder="Enter Product Step">
+                        {% if error.product_step %}
+                        <div class="invalid-feedback">{{error.product_step}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Website:</label>
-                        <input type="text" name="website" value="{% if data.website %}{{data.website}}{% endif %}" class="form-control {% if error.website %}is-invalid{% endif %}"  placeholder="Enter website">
-                        {% if error.website %}
-                        <div class="invalid-feedback">{{error.website}}</div>
+                        <label class="form-label" >Quantity:</label>
+                        <input type="text" name="product_quantity" value="{% if data.product_quantity %}{{data.product_quantity}}{% endif %}" class="form-control {% if error.product_quantity %}is-invalid{% endif %}"  placeholder="Enter Quantity">
+                        {% if error.product_quantity %}
+                        <div class="invalid-feedback">{{error.product_quantity}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Internal Number:</label>
-                        <input type="text" name="internal_number" value="{% if data.internal_number %}{{data.internal_number}}{% endif %}" class="form-control {% if error.internal_number %}is-invalid{% endif %}"  placeholder="Enter Internal Number">
-                        {% if error.internal_number %}
-                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        <label class="form-label" >Date:</label>
+                        <input type="date" name="date"  value="{% if data.date %}{{data.date|date:'Y-m-d'}}{% endif %}" class="form-control {% if error.date %}is-invalid{% endif %}" placeholder="Enter Internal Number">
+                        {% if error.date %}
+                        <div class="invalid-feedback">{{error.date}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Phone:</label>
-                        <input type="text" name="phone" value="{% if data.phone %}{{data.phone}}{% endif %}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter Phone">
-                        {% if error.phone %}
-                        <div class="invalid-feedback">{{error.phone}}</div>
+                        <label class="form-label" >WareHouse:</label>
+                        <select name="ware_house" class="form-control {% if error.ware_house %}is-invalid{% endif %}" >
+                            <option value="">--- Select ware House---</option>
+                            <option {% ifequal data.ware_house "1" %} selected {% endifequal %} value="1">ware house 1</option>
+                            <option {% ifequal data.ware_house "2" %} selected {% endifequal %} value="2">ware house 2</option>
+                            <option {% ifequal data.ware_house "3" %} selected {% endifequal %} value="3">ware house 3</option>
+                            <option {% ifequal data.ware_house "4" %} selected {% endifequal %} value="4">ware house 4</option>
+                        </select>
+                        {% if error.ware_house %}
+                        <div class="invalid-feedback">{{error.ware_house}}</div>
                         {% endif %}
                     </div>
                 </div>
-                
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Row Number:</label>
+                        <input type="text" name="row_number" value="{% if data.row_number %}{{data.row_number}}{% endif %}" class="form-control {% if error.row_number %}is-invalid{% endif %}"  placeholder="Enter Row Number">
+                        {% if error.row_number %}
+                        <div class="invalid-feedback">{{error.row_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Product location:</label>
+                        <input type="text" name="product_location" value="{% if data.product_location %}{{data.product_location}}{% endif %}" class="form-control {% if error.product_location %}is-invalid{% endif %}"  placeholder="Enter Product location">
+                        {% if error.product_location %}
+                        <div class="invalid-feedback">{{error.product_location}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Quantity Date:</label>
+                        <input type="date" name="quantity_date" value="{% if data.quantity_date %}{{data.quantity_date|date:'Y-m-d'}}{% endif %}" class="form-control {% if error.quantity_date %}is-invalid{% endif %}" placeholder="Enter Internal Number">
+                        {% if error.quantity_date %}
+                        <div class="invalid-feedback">{{error.quantity_date}}</div>
+                        {% endif %}
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

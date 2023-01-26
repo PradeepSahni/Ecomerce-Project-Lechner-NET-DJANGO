@@ -59,68 +59,30 @@
 
                 <div class="card m-0">
 
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
                             <thead>
                                 <tr>
-
-                                    <th>
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-name">Name</a>
-                                    </th>
-
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
-                                            data-sort="js-lists-values-user-email" >Legal form</a></th>
-
-                                    <th style="width: 120px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-username">Categories</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">website</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-dob">Internal Number</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Phone</a>
-                                    </th>
-                                    <th style="width: 24px;"
-                                        class="pl-0"></th>
+                                    <th>Name</th>
+                                    <th>Legal form</th>
+                                    <th>Categories</th>
+                                    <th>website</th>
+                                    <th>Internal Number</th>
+                                    <th>Phone</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="list" id="search">
-                            
+                            <tbody>
                             {% if supplier_list|length > 0 %}
                                 {% for row in supplier_list %}
                                 <tr>
-                                    <td class="js-lists-values-user-name">{% if row.name is not None %}{{row.name|capfirst}}{% endif %} </td>
-                                    <td class="js-lists-values-user-email">{% if row.legal_form is not None %}{{row.legal_form}}{% endif %}</td>
-                                    <td class="js-lists-values-user-username">{% if row.categories is not None %}{{row.categories}}{% endif %}</td>
-                                    <td class="js-lists-values-user-phone small">{% if row.website is not None %}{{row.website }}{% endif %}</td>
-                                    <td class="js-lists-values-user-address small">{% if row.internal_number is not None %}{{row.internal_number |capfirst}}{% endif %}</td>
-                                    <td class="js-lists-values-user-dob small">{% if row.phone is not None %}{{row.phone}}{% endif %}</td>
-                                    <td class="text-right pl-0">
+                                    <td>{% if row.name is not None %}{{row.name|capfirst}}{% endif %} </td>
+                                    <td>{% if row.legal_form is not None %}{{row.legal_form}}{% endif %}</td>
+                                    <td>{% if row.categories is not None %}{{row.categories}}{% endif %}</td>
+                                    <td>{% if row.website is not None %}{{row.website }}{% endif %}</td>
+                                    <td>{% if row.internal_number is not None %}{{row.internal_number |capfirst}}{% endif %}</td>
+                                    <td>{% if row.phone is not None %}{{row.phone}}{% endif %}</td>
+                                    <td>
                                         <a href="{% url 'authapp:delete_supplier' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
                                         <a href="{% url 'authapp:edit_supplier' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
                                     </td>
@@ -130,6 +92,17 @@
                                     <tr class="text-center text-danger"><td colspan="5">there are no data </td> </tr>
                             {% endif %}
                             </tbody>
+                            {% comment %} <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Legal form</th>
+                                    <th>Categories</th>
+                                    <th>website</th>
+                                    <th>Internal Number</th>
+                                    <th>Phone</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot> {% endcomment %}
                         </table>
                     </div>
 

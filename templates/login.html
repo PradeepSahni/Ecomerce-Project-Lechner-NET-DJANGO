@@ -51,10 +51,17 @@
                                         <div class="form-group mb-24pt">
                                             <label class="form-label" for="password">Password:</label>
                                             <input id="password" type="password" value="{{password}}" name="password" class="form-control" autocomplete="current-password" placeholder="Your password ...">
-                                            <p class="text-right"><a href="{% url 'authapp:password_reset' %}" class="small">Forgot your password?</a></p>
                                         </div>
                                         <input type="hidden" name="next" value="{{ next }}" />
                                         <button type="submit" class="btn btn-accent">Login</button>
+                                        <p class="text-right">
+                                        <a href="{% url 'authapp:password_reset' %}" class="small">Forgot your password?</a></p>
+                                        <p class="text-right">
+                                            <div class="custom-control custom-checkbox">
+                                                <input id="customCheck01" type="checkbox" checked="" class="custom-control-input">
+                                                <label for="customCheck01" class="custom-control-label">Remember Me</label>
+                                            </div>
+                                        </p>
                                     </form>
                                 </div>
                                 <div class="col-md-3"></div>

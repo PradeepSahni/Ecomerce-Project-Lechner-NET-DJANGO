@@ -52,64 +52,130 @@
         </div>
         <div class="col-lg-12 d-flex align-items-center">
         
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="flex form-row" style="max-width: 100%">
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Name:</label>
-                        <input type="text" name="name" value="{% if data.name %}{{data.name}}{% endif %}" class="form-control {% if error.name %}is-invalid{% endif %}"  placeholder="Enter name">
-                        {% if error.name %}
-                        <div class="invalid-feedback">{{error.name}}</div>
+                        <label class="form-label" >Material Name:</label>
+                        <input type="text" name="material_name" value="{% if data.material_name %}{{data.material_name}}{% endif %}" class="form-control {% if error.material_name %}is-invalid{% endif %}"  placeholder="Enter Material Name">
+                        {% if error.material_name %}
+                        <div class="invalid-feedback">{{error.material_name}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Legal Form:</label>
-                        <input type="text" name="legal_form" value="{% if data.legal_form %}{{data.legal_form}}{% endif %}" class="form-control {% if error.legal_form %}is-invalid{% endif %}"  placeholder="Enter Legal Form">
-                        {% if error.legal_form %}
-                        <div class="invalid-feedback">{{error.legal_form}}</div>
+                        <label class="form-label" >Material Type:</label>
+                        <input type="text" name="material_type" value="{% if data.material_type %}{{data.material_type}}{% endif %}" class="form-control {% if error.material_type %}is-invalid{% endif %}"  placeholder="Enter Material Type">
+                        {% if error.material_type %}
+                        <div class="invalid-feedback">{{error.material_type}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Category:</label>
-                        <input type="text" name="categories" value="{% if data.categories %}{{data.categories}}{% endif %}" class="form-control {% if error.categories %}is-invalid{% endif %}"  placeholder="Enter categories">
-                        {% if error.categories %}
-                        <div class="invalid-feedback">{{error.categories}}</div>
+                        <label class="form-label" >Material Number:</label>
+                        <input type="text" name="material_number" value="{% if data.material_number %}{{data.material_number}}{% endif %}" class="form-control {% if error.material_number %}is-invalid{% endif %}"  placeholder="Enter Material Number">
+                        {% if error.material_number %}
+                        <div class="invalid-feedback">{{error.material_number}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Website:</label>
-                        <input type="text" name="website" value="{% if data.website %}{{data.website}}{% endif %}" class="form-control {% if error.website %}is-invalid{% endif %}"  placeholder="Enter website">
-                        {% if error.website %}
-                        <div class="invalid-feedback">{{error.website}}</div>
+                        <label class="form-label" >Owner/supplier:</label>
+                        <select name="supplier_id" value="{% if data.supplier_id %}{{data.supplier_id}}{% endif %}" class="form-control {% if error.supplier_id %}is-invalid{% endif %}" >
+                            {% if suppliers|length %}
+                            <option value="">--  Select Owner  --</option>
+                            {% for row in suppliers %}
+                            <option  {% ifequal data.supplier_id row.id %} selected {% endifequal %} value="{{row.id}}">{{row.name}}</option>
+                            {% endfor %}
+                            {% endif %}
+                        </select>
+                        {% if error.supplier_id %}
+                        <div class="invalid-feedback">{{error.supplier_id}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Internal Number:</label>
-                        <input type="text" name="internal_number" value="{% if data.internal_number %}{{data.internal_number}}{% endif %}" class="form-control {% if error.internal_number %}is-invalid{% endif %}"  placeholder="Enter Internal Number">
-                        {% if error.internal_number %}
-                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        <label class="form-label" >Quantity:</label>
+                        <input type="text" name="material_quantity" value="{% if data.material_quantity %}{{data.material_quantity}}{% endif %}" class="form-control {% if error.material_quantity %}is-invalid{% endif %}"  placeholder="Enter Quantity">
+                        {% if error.material_quantity %}
+                        <div class="invalid-feedback">{{error.material_quantity}}</div>
                         {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
-                        <label class="form-label" >Phone:</label>
-                        <input type="text" name="phone" value="{% if data.phone %}{{data.phone}}{% endif %}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter Phone">
-                        {% if error.phone %}
-                        <div class="invalid-feedback">{{error.phone}}</div>
+                        <label class="form-label" >Price:</label>
+                        <input type="text" name="price" value="{% if data.price %}{{data.price}}{% endif %}" class="form-control {% if error.price %}is-invalid{% endif %}"  placeholder="Enter Price">
+                        {% if error.price %}
+                        <div class="invalid-feedback">{{error.price}}</div>
                         {% endif %}
                     </div>
                 </div>
-                
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Image:</label>
+                        <input type="file" name="image" value="{% if data.image %}{{data.image}}{% endif %}" class="form-control {% if error.image %}is-invalid{% endif %}"/>
+                        {% if error.image %}
+                        <div class="invalid-feedback">{{error.image}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Material Sample:</label>
+                        <input type="text" name="material_sample" value="{% if data.material_sample %}{{data.material_sample}}{% endif %}" class="form-control {% if error.material_sample %}is-invalid{% endif %}"  placeholder="Enter Material Sample">
+                        {% if error.material_sample %}
+                        <div class="invalid-feedback">{{error.material_sample}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >WareHouse:</label>
+                        <select name="ware_house" class="form-control {% if error.ware_house %}is-invalid{% endif %}" >
+                            <option value="">--- Select ware House---</option>
+                            <option {% ifequal data.ware_house "1" %} selected {% endifequal %} value="1">ware house 1</option>
+                            <option {% ifequal data.ware_house "2" %} selected {% endifequal %} value="2">ware house 2</option>
+                            <option {% ifequal data.ware_house "3" %} selected {% endifequal %} value="3">ware house 3</option>
+                            <option {% ifequal data.ware_house "4" %} selected {% endifequal %} value="4">ware house 4</option>
+                        </select>
+                        {% if error.ware_house %}
+                        <div class="invalid-feedback">{{error.ware_house}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Row Number:</label>
+                        <input type="text" name="row_number" value="{% if data.row_number %}{{data.row_number}}{% endif %}" class="form-control {% if error.row_number %}is-invalid{% endif %}"  placeholder="Enter Row Number">
+                        {% if error.row_number %}
+                        <div class="invalid-feedback">{{error.row_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Material location:</label>
+                        <input type="text" name="material_location" value="{% if data.material_location %}{{data.material_location}}{% endif %}" class="form-control {% if error.material_location %}is-invalid{% endif %}"  placeholder="Enter Material location">
+                        {% if error.material_location %}
+                        <div class="invalid-feedback">{{error.material_location}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Quantity Date:</label>
+                        <input type="date" name="quantity_date" value="{% if data.quantity_date %}{{data.quantity_date|date:'Y-m-d'}}{% endif %}" class="form-control {% if error.quantity_date %}is-invalid{% endif %}"  placeholder="Enter Quantity Date">
+                        {% if error.quantity_date %}
+                        <div class="invalid-feedback">{{error.quantity_date}}</div>
+                        {% endif %}
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

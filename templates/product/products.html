@@ -57,162 +57,65 @@
 
                 <div class="card m-0">
 
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
-                            <thead>
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Procduct Name</th>
+                                <th>Product Number</th>
+                                <th>Product Step</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Ware House</th>
+                                <th>Row Number</th>
+                                <th>Product location</th>
+                                <th>quantity_date</th>
+                                <th>barcode</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if products|length > 0 %}
+                            {% for row in products %}
                                 <tr>
-
-                                    <th>
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-name">Procduct Name</a>
-                                    </th>
-
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
-                                            data-sort="js-lists-values-user-email" >Product Number</a></th>
-
-                                    <th style="width: 120px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-username">Product Step</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">Quantity</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-dob">Date</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Ware House</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Row Number</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Product location</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">quantity_date</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">barcode</a>
-                                    </th>
-                                    <th style="width: 24px;"
-                                        class="pl-0"></th>
-                                </tr>
-                            </thead>
-                            <tbody class="list" id="search">
-                            
-                            
-                                </tr>
-                                    <td class="js-lists-values-user-name">Product</td>
-                                    <td class="js-lists-values-user-name">P9733iu</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">300</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 1</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 1</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/barcode/barcode.png' %}" height="40"/></td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                                    <td>{% if row.product_name %}{{row.product_name|capfirst}}{% endif %}</td>
+                                    <td>{% if row.product_number %}{{row.product_number}}{% endif %}</td>
+                                    <td>{% if row.product_step %}{{row.product_step}}{% endif %}</td>
+                                    <td>{% if row.product_quantity %}{{row.product_quantity}}{% endif %}</td>
+                                    <td>{% if row.date %}{{row.date}}{% endif %}</td>
+                                    <td>{% if row.ware_house %}{{row.ware_house}}{% endif %}</td>
+                                    <td>{% if row.row_number %}{{row.row_number}}{% endif %}</td>
+                                    <td>{% if row.product_location %}{{row.product_location|capfirst}}{% endif %}</td>
+                                    <td>{% if row.quantity_date %}{{row.quantity_date}}{% endif %}</td>
+                                    <td>
+                                    {% if row.product_bar_code %}
+                                    <img src="{{row.product_bar_code.url}}" style="height: 76px;"/>
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'lechnerapp:delete_product' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                        <a href="{% url 'lechnerapp:edit_product' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
                                     </td>
                                 </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Product2</td>
-                                    <td class="js-lists-values-user-name">Piuy324</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">320</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">2</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/barcode/barcode.png' %}" height="40"/></td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Product2</td>
-                                    <td class="js-lists-values-user-name">Piuy324</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">320</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">2</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/barcode/barcode.png' %}" height="40"/></td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Product2</td>
-                                    <td class="js-lists-values-user-name">Piuy324</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">320</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">2</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/barcode/barcode.png' %}" height="40"/></td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Product2</td>
-                                    <td class="js-lists-values-user-name">Piuy324</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">320</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">2</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/barcode/barcode.png' %}" height="40"/></td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                        {% comment %} <tfoot>
+                            <tr>
+                                <th>Procduct Name</th>
+                                <th>Product Number</th>
+                                <th>Product Step</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Ware House</th>
+                                <th>Row Number</th>
+                                <th>Product location</th>
+                                <th>quantity_date</th>
+                                <th>barcode</th>
+                                <th></th>
+                            </tr>
+                        </tfoot> {% endcomment %}
+                    </table>
                     </div>
 
                 </div>

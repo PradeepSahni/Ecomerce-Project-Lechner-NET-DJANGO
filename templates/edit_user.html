@@ -61,7 +61,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label">Fisrt Name:</label>
-                        <input type="text" name="first_name" value="{{getUser.first_name}}" class="form-control {% if error.first_name %}is-invalid{% endif %}"  placeholder="Enter Fisrt name">
+                        <input type="text" name="first_name" value="{% if getUser.first_name %}{{getUser.first_name}}{% endif %}" class="form-control {% if error.first_name %}is-invalid{% endif %}"  placeholder="Enter Fisrt name">
                         {% if error.first_name %}
                         <div class="invalid-feedback">{{error.first_name|striptags}}</div>
                         {% endif %}
@@ -70,7 +70,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Last Name:</label>
-                        <input type="text" name="last_name" value="{{getUser.last_name}}" class="form-control {% if error.last_name %}is-invalid{% endif %}"  placeholder="Enter last name">
+                        <input type="text" name="last_name" value="{% if getUser.last_name %}{{getUser.last_name}}{% endif %}" class="form-control {% if error.last_name %}is-invalid{% endif %}"  placeholder="Enter last name">
                         {% if error.last_name %}
                         <div class="invalid-feedback">{{error.last_name|striptags }}</div>
                         {% endif %}
@@ -79,7 +79,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Email:</label>
-                        <input type="email" name="email" value="{{getUser.email}}" class="form-control {% if error.email %}is-invalid{% endif %}"  placeholder="Enter Email">
+                        <input type="email" name="email" value="{% if getUser.email %}{{getUser.email}}{% endif %}" class="form-control {% if error.email %}is-invalid{% endif %}"  placeholder="Enter Email">
                         {% if error.email %}
                         <div class="invalid-feedback">{{error.email|striptags }}</div>
                         {% endif %}
@@ -88,7 +88,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Username:</label>
-                        <input type="text" name="username" value="{{getUser.username}}" class="form-control {% if error.username %}is-invalid{% endif %}"  placeholder="Enter username">
+                        <input type="text" name="username" value="{% if getUser.username %}{{getUser.username}}{% endif %}" class="form-control {% if error.username %}is-invalid{% endif %}"  placeholder="Enter username">
                         {% if error.username %}
                         <div class="invalid-feedback">{{error.username|striptags }}</div>
                         {% endif %}
@@ -97,7 +97,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Phone:</label>
-                        <input type="text" name="phone" value="{{getUser.userdetails.phone}}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter username">
+                        <input type="text" name="phone" value="{% if getUser.userdetails.phone %}{{getUser.userdetails.phone}}{% endif %}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter Phone">
                         {% if error.phone %}
                         <div class="invalid-feedback">{{error.phone|striptags }}</div>
                         {% endif %}
@@ -106,7 +106,7 @@
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Birthday:</label>
-                        <input type="hidden" name="dob" value="{{getUser.userdetails.dob|date:'Y-m-d'}}" class="form-control flatpickr-input {% if error.dob %}is-invalid{% endif %}" data-toggle="flatpickr">
+                        <input type="hidden" name="dob" value="{% if getUser.userdetails.dob %}{{getUser.userdetails.dob|date:'Y-m-d'}}{% endif %}" class="form-control flatpickr-input {% if error.dob %}is-invalid{% endif %}" data-toggle="flatpickr">
                         {% if error.dob %}
                         <div class="invalid-feedback">{{error.dob|striptags }}</div>
                         {% endif %}
@@ -115,7 +115,7 @@
                 <div class="col-12 col-md-12 col-lg-12 mb-3">
                     <div class="form-group">
                         <label class="form-label" >Address:</label>
-                        <textarea rows="5" style="resize:none;" name="address" class="form-control {% if error.address %}is-invalid{% endif %}"  placeholder="Enter username" >{{getUser.userdetails.address}}</textarea>
+                        <textarea rows="5" style="resize:none;" name="address" class="form-control {% if error.address %}is-invalid{% endif %}"  placeholder="Enter Address" >{% if getUser.userdetails.address %}{{getUser.userdetails.address}}{% endif %}</textarea>
                         {% if error.address %}
                         <div class="invalid-feedback">{{error.address|striptags }}</div>
                         {% endif %}

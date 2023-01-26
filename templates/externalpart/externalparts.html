@@ -52,132 +52,62 @@
             {% endif %}
         </div>
         <div class="col-lg-12 d-flex align-items-center">
-            <div class="flex"
-                    style="max-width: 100%">
-
+            <div class="flex" style="max-width: 100%">
                 <div class="card m-0">
-
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th><a href="javascript:void(0)"class="sort" data-sort="js-lists-values-user-name">Part Name</a></th>
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-email" >Part Number</a></th>
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-email" >Charge Number</a></th>
-                                    <th style="width: 120px;"> <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-username">Supplier</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-address">Date</a></th>
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-email" >Product use location</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Ware House</a> </th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Row Number</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Part location</a></th>
-                                    <th style="width: 24px;"class="pl-0"></th>
+                                    <th>Part Name</th>
+                                    <th>Part Number</th>
+                                    <th>Charge Number</th>
+                                    <th>Supplier</th>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Product use location</th>
+                                    <th>Ware House</th>
+                                    <th>Row Number</th>
+                                    <th>Part location</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="list" id="search">
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 1</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Sanjeev</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  1</td>
-                                        <td class="js-lists-values-user-name">Ware House 234</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 324</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                            <tbody>
+                            {% if externalParts|length > 0 %}
+                                {% for row in externalParts %}
+                                    <tr class="{{row.id}}">
+                                        <td>{% if row.part_name %}{{row.part_name|capfirst}}{% endif %}</td>
+                                        <td>{% if row.part_number %}{{row.part_number|capfirst}}{% endif %}</td>
+                                        <td>{% if row.charge_number %}{{row.charge_number}}{% endif %}</td>
+                                        <td>{% if row.supplier_id %}{{row.supplier_id}}{% endif %}</td>
+                                        <td>{% if row.date %}{{row.date}}{% endif %}</td>
+                                        <td>{% if row.product_id %}{{row.product_id}}{% endif %}</td>
+                                        <td>{% if row.product_use_location %}{{row.product_use_location}}{% endif %}</td>
+                                        <td>{% if row.ware_house %}{{row.ware_house}}{% endif %}</td>
+                                        <td>{% if row.row_number %}{{row.row_number}}{% endif %}</td>
+                                        <td>{% if row.part_location %}{{row.part_location|capfirst}}{% endif %}</td>
+                                        <td>
+                                            <a href="{% url 'lechnerapp:delete_externalpart' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                            <a href="{% url 'lechnerapp:edit_externalpart' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 34</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Kumar</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  35</td>
-                                        <td class="js-lists-values-user-name">Ware House 234</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 324</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 3</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Sanjeev</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  1</td>
-                                        <td class="js-lists-values-user-name">Ware House 234</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 324</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 435</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Sanjeev</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  12</td>
-                                        <td class="js-lists-values-user-name">Ware House 4</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 3</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 11</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Sanjeev</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  1</td>
-                                        <td class="js-lists-values-user-name">Ware House 234</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 324</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="js-lists-values-user-name">Part 13</td>
-                                        <td class="js-lists-values-user-name">PKG03475</td>
-                                        <td class="js-lists-values-user-name">34w45ghhf6575675358966</td>
-                                        <td class="js-lists-values-user-name">Sanjeev</td>
-                                        <td class="js-lists-values-user-name">05-10-2021</td>
-                                        <td class="js-lists-values-user-name">Location  1</td>
-                                        <td class="js-lists-values-user-name">Ware House 234</td>
-                                        <td class="js-lists-values-user-name">34</td>
-                                        <td class="js-lists-values-user-name">location 324</td>
-                                        <td class="text-right pl-0">
-                                            <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                            <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                        </td>
-                                    </tr>
-                                    
+                                {% endfor %}
+                            {% endif %}
                             </tbody>
+                            {% comment %} <tfoot>
+                                <tr>
+                                    <th>Part Name</th>
+                                    <th>Part Number</th>
+                                    <th>Charge Number</th>
+                                    <th>Supplier</th>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Product use location</th>
+                                    <th>Ware House</th>
+                                    <th>Row Number</th>
+                                    <th>Part location</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot> {% endcomment %}
                         </table>
                     </div>
 

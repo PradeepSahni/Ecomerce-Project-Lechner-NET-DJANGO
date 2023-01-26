@@ -13,8 +13,7 @@ urlpatterns = [
     path('products', productViews.products, name='products'),
     path('add_product',productViews.add_product,name="add_product"),
     path('delete_product/<int:product_id>',productViews.delete_product,name="delete_product"),
-    path('edit_product/<int:user_id>',productViews.edit_product,name="edit_product"),
-    path("getbarcode",productViews.getbarcode,name="getbarcode"),
+    path('edit_product/<int:product_id>',productViews.edit_product,name="edit_product"),
     
     # product 
     path('materials', materialViews.materials, name='materials'),

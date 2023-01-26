@@ -1,2 +1,5 @@
 Django==3.0.9
 django-bootstrap4==2.2.0
+mysqlclient==2.0.3
+python-barcode==0.13.1
+pillow==8.3.2

@@ -57,327 +57,69 @@
 
                 <div class="card m-0">
 
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
-                            <thead>
-                                <tr>
-
-                                    <th>
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-name">Material Name</a>
-                                    </th>
-
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
-                                            data-sort="js-lists-values-user-email" >Material Type</a></th>
-
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
-                                            data-sort="js-lists-values-user-email" >Material Number</a></th>
-
-                                    <th style="width: 120px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-username">Owner/supplier</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">Quantity</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">Price</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">Image</a>
-                                    </th>
-
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-dob">Material Sample Name</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Ware House</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Row Number</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Material location</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">quantity_date</a>
-                                    </th>
-                                    
-                                    <th style="width: 24px;"
-                                        class="pl-0"></th>
-                                </tr>
-                            </thead>
-                            <tbody class="list" id="search">
-                            
-                            
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 1</td>
-                                    <td class="js-lists-values-user-name">type 1</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">300</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 1</td>
-                                    <td class="js-lists-values-user-name">Ware House 1</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 1</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Material Name</th>
+                                <th>Material Type</th>
+                                <th>Material Number</th>
+                                <th>Owner/supplier</th>
+                                <th>Material Quantity</th>
+                                <th>Price</th>
+                                <th>Image</th>
+                                <th>Material Sample Name</th>
+                                <th>Ware House</th>
+                                <th>Row Number</th>
+                                <th>Material location</th>
+                                <th>Quantity Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if materials|length > 0 %}
+                            {% for row in materials %}
+                                <tr class="{{row.id}}">
+                                    <td>{% if row.material_name %}{{row.material_name|capfirst}}{% endif %}</td>
+                                    <td>{% if row.material_type %}{{row.material_type}}{% endif %}</td>
+                                    <td>{% if row.material_number %}{{row.material_number}}{% endif %}</td>
+                                    <td>{% if row.supplier_id %}{{row.supplier_id}}{% endif %}</td>
+                                    <td>{% if row.material_quantity %}{{row.material_quantity}}{% endif %}</td>
+                                    <td>{% if row.price %}{{row.price}}{% endif %}</td>
+                                    <td>
+                                    {% if row.materialimage.image %}
+                                    <img src="{{row.materialimage.image.url}}" alt="{{row.materialimage.image.url}}" style="height: 76px;"/>
+                                    {% endif %}
+                                    </td>
+                                    <td>{% if row.material_sample %}{{row.material_sample|capfirst}}{% endif %}</td>
+                                    <td>{% if row.ware_house %}{{row.ware_house}}{% endif %}</td>
+                                    <td>{% if row.row_number %}{{row.row_number}}{% endif %}</td>
+                                    <td>{% if row.material_location %}{{row.material_location|capfirst}}{% endif %}</td>
+                                    <td>{% if row.quantity_date %}{{row.quantity_date}}{% endif %}</td>
+                                    <td>
+                                        <a href="{% url 'lechnerapp:delete_material' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                        <a href="{% url 'lechnerapp:edit_material' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
                                     </td>
                                 </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-
-                                </tr>
-                                    <td class="js-lists-values-user-name">Material 2</td>
-                                    <td class="js-lists-values-user-name">type 2</td>
-                                    <td class="js-lists-values-user-name">M24234</td>
-                                    <td class="js-lists-values-user-name">Supplier 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">299</td>
-                                    <td class="js-lists-values-user-name"><img src="{% static 'assets/images/products/product.png' %}" height="40"/></td>
-                                    <td class="js-lists-values-user-name">Sample 2</td>
-                                    <td class="js-lists-values-user-name">Ware House 2</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 2</td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                        {% comment %} <tfoot>
+                            <tr>
+                                <th>Procduct Name</th>
+                                <th>Product Number</th>
+                                <th>Product Step</th>
+                                <th>Quantity</th>
+                                <th>Date</th>
+                                <th>Ware House</th>
+                                <th>Row Number</th>
+                                <th>Product location</th>
+                                <th>quantity_date</th>
+                                <th>barcode</th>
+                                <th></th>
+                            </tr>
+                        </tfoot> {% endcomment %}
+                    </table>
                     </div>
 
                 </div>

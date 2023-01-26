@@ -59,88 +59,53 @@
 
                 <div class="card m-0">
 
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        {% comment %} <div class="card-header">
-                            <div class="search-form">
-                                <input type="text"
-                                        class="form-control search"
-                                        placeholder="Search ...">
-                                <button class="btn"
-                                        type="button"
-                                        role="button"><i class="material-icons">search</i></button>
-                            </div>
-                        </div> {% endcomment %}
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
                             <thead>
                                 <tr>
-
-                                    <th>
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-name">Name</a>
-                                    </th>
-
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
-                                            data-sort="js-lists-values-user-email" >Email</a></th>
-
-                                    <th style="width: 120px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-username">Username</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-phone">Phone</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-address">Address</a>
-                                    </th>
-                                    <th style="width: 51px;">
-                                        <a href="javascript:void(0)"
-                                            class="sort"
-                                            data-sort="js-lists-values-user-dob">Birthday</a>
-                                    </th>
-                                    <th style="width: 24px;"
-                                        class="pl-0"></th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Birthday</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="list" id="search">
-                            {% if users|length > 0 %}
-                                {% for row in users %}
-                                {% if row.is_superuser < 1  %}
-                                <tr>
-                                    <td class="js-lists-values-user-name">{% if row.first_name is not None %}{{row.first_name|capfirst}}{% endif %}  {% if row.last_name is not None %}{{row.last_name|capfirst}}{% endif %}</td>
-                                    <td class="js-lists-values-user-email">{% if row.email is not None %}{{row.email}}{% endif %}</td>
-                                    <td class="js-lists-values-user-username">{% if row.username is not None %}{{row.username}}{% endif %}</td>
-                                    <td class="js-lists-values-user-phone small">{% if row.userdetails.phone is not None %}{{row.userdetails.phone}}{% endif %}</td>
-                                    <td class="js-lists-values-user-address small">{% if row.userdetails.address is not None %}{{row.userdetails.address|capfirst}}{% endif %}</td>
-                                    <td class="js-lists-values-user-dob small">{% if row.userdetails.dob is not None %}{{row.userdetails.dob}}{% endif %}</td>
-                                    <td class="text-right pl-0">
-                                        <a href="{% url 'authapp:delete_user' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="{% url 'authapp:edit_user' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
+                            <tbody>
+                                {% if users|length > 0 %}
+                                    {% for row in users %}
+                                    {% if row.is_superuser < 1  %}
+                                    <tr>
+                                        <td>{% if row.first_name is not None %}{{row.first_name|capfirst}}{% endif %}  {% if row.last_name is not None %}{{row.last_name|capfirst}}{% endif %}</td>
+                                        <td>{% if row.email is not None %}{{row.email}}{% endif %}</td>
+                                        <td>{% if row.username is not None %}{{row.username}}{% endif %}</td>
+                                        <td>{% if row.userdetails.phone is not None %}{{row.userdetails.phone}}{% endif %}</td>
+                                        <td>{% if row.userdetails.address is not None %}{{row.userdetails.address|capfirst}}{% endif %}</td>
+                                        <td>{% if row.userdetails.dob is not None %}{{row.userdetails.dob}}{% endif %}</td>
+                                        <td>
+                                            <a href="{% url 'authapp:delete_user' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                            <a href="{% url 'authapp:edit_user' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    
+                                    {% endfor %}
+                                {% else %}
+                                        <tr class="text-center text-danger"><td colspan="5">there are no data </td> </tr>
                                 {% endif %}
-                                
-                                {% endfor %}
-                            {% else %}
-                                    <tr class="text-center text-danger"><td colspan="5">there are no data </td> </tr>
-                            {% endif %}
                             </tbody>
+                            {% comment %} <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Username</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Birthday</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot> {% endcomment %}
                         </table>
                     </div>
 

@@ -57,192 +57,54 @@
 
                 <div class="card m-0">
 
-                    <div class="table-responsive"
-                            data-toggle="lists"
-                            data-lists-sort-by="js-lists-values-user-username"
-                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
-
-                        
-                        <div class="card-header">
-                            <form class="form-inline">
-                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-                            </form>
-                        </div>
-
-                        <table class="table mb-0 thead-border-top-0 table-nowrap">
+                    <div class="table-responsive">
+                        <table id="example" class="table mb-0 thead-border-top-0 table-nowrap" style="width:100%">
                             <thead>
                                 <tr>
-
-                                    <th><a href="javascript:void(0)"class="sort" data-sort="js-lists-values-user-name">Mold Name</a></th>
-                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-email" >Mold Number</a></th>
-                                    <th style="width: 120px;"> <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-username">Owner/supplier</a></th>
-                                    <th style="width: 120px;"> <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-username">Mold Status</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-address">Date</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Ware House</a> </th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Row Number</a></th>
-                                    <th style="width: 51px;"><a href="javascript:void(0)" class="sort" data-sort="js-lists-values-user-phone">Tools location</a></th>
-                                    <th style="width: 24px;"class="pl-0"></th>
+                                    <th>Mold Name</th>
+                                    <th>Mold Number</th>
+                                    <th>Owner/supplier</th>
+                                    <th>Mold Status</th>
+                                    <th>Date</th>
+                                    <th>Ware House</th>
+                                    <th>Row Number</th>
+                                    <th>Tools location</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="list" id="search">
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 1</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 234</td>
-                                    <td class="js-lists-values-user-name">34</td>
-                                    <td class="js-lists-values-user-name">location 324</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 234</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 324</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-danger">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 324</td>
-                                    <td class="js-lists-values-user-name">234</td>
-                                    <td class="js-lists-values-user-name">location 3</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 324</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 324</td>
-                                    <td class="js-lists-values-user-name">234</td>
-                                    <td class="js-lists-values-user-name">location 324</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 324</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 5</td>
-                                    <td class="js-lists-values-user-name">35</td>
-                                    <td class="js-lists-values-user-name">location 234</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 23</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 46</td>
-                                    <td class="js-lists-values-user-name">234</td>
-                                    <td class="js-lists-values-user-name">location 1567</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 24</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 57</td>
-                                    <td class="js-lists-values-user-name">45</td>
-                                    <td class="js-lists-values-user-name">location 35</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 678</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 75</td>
-                                    <td class="js-lists-values-user-name">546</td>
-                                    <td class="js-lists-values-user-name">location 75</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 678</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-danger">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 45</td>
-                                    <td class="js-lists-values-user-name">6</td>
-                                    <td class="js-lists-values-user-name">location 4</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 678</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 34</td>
-                                    <td class="js-lists-values-user-name">65</td>
-                                    <td class="js-lists-values-user-name">location 54</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 325</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-danger">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 1</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 1</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <td class="js-lists-values-user-name">Mold 345</td>
-                                    <td class="js-lists-values-user-name">M3534</td>
-                                    <td class="js-lists-values-user-name">Supplier 1</td>
-                                    <td class="js-lists-values-user-name"><a class="btn btn-xs btn-info">Acive</a></td>
-                                    <td class="js-lists-values-user-name">05-10-2021</td>
-                                    <td class="js-lists-values-user-name">Ware House 1</td>
-                                    <td class="js-lists-values-user-name">1</td>
-                                    <td class="js-lists-values-user-name">location 1</td>
-                                    <td class="text-right pl-0">
-                                        <a href="#" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
-                                        <a href="#" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
-                                    </td>
-                                </tr>
-                                
+                            <tbody>
+                            {% if moldingTools|length > 0 %}
+                                {% for row in moldingTools %}
+                                    <tr class="{{row.id}}">
+                                        <td>{% if row.molding_name %}{{row.molding_name|capfirst}}{% endif %}</td>
+                                        <td>{% if row.molding_number %}{{row.molding_number}}{% endif %}</td>
+                                        <td>{% if row.supplier_id %}{{row.supplier_id}}{% endif %}</td>
+                                        <td> <a class="btn btn-xs {% if row.molding_status %}btn-info{% else %}btn-danger{% endif %}">Acive</a></td>
+                                        <td>{% if row.date %}{{row.date}}{% endif %}</td>
+                                        <td>{% if row.ware_house %}{{row.ware_house}}{% endif %}</td>
+                                        <td>{% if row.row_number %}{{row.row_number}}{% endif %}</td>
+                                        <td>{% if row.molding_location %}{{row.molding_location|capfirst}}{% endif %}</td>
+                                        <td>
+                                            <a href="{% url 'lechnerapp:delete_moldingtool' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                            <a href="{% url 'lechnerapp:edit_moldingtool' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
                             </tbody>
+                            {% comment %} <tfoot>
+                                <tr>
+                                    <th>Mold Name</th>
+                                    <th>Mold Number</th>
+                                    <th>Owner/supplier</th>
+                                    <th>Mold Status</th>
+                                    <th>Date</th>
+                                    <th>Ware House</th>
+                                    <th>Row Number</th>
+                                    <th>Tools location</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot> {% endcomment %}
                         </table>
                     </div>
 
