@@ -1,0 +1,119 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<div class="border-bottom-2 py-32pt position-relative z-1">
+    <div class="container-fluid page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <h2 class="mb-0">New Supplier</h2>
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'authapp:dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Supplier </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row" role="tablist">
+            <div class="col-auto border-left">
+                <a href="{% url 'authapp:add_supplier' %}" class="btn btn-accent">New Supplier</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid page__container page-section">
+    <div class="row mb-32pt">
+        <div class="col-lg-12">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert bg-{% if message.tags %}{{ message.tags }}{% endif %} text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="d-flex flex-wrap align-items-start">
+                    <div class="flex" style="min-width: 180px">
+                        <small>
+                            {{ message }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% if error %}
+        <div class="alert bg-error text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="flex" style="min-width: 180px">
+                    <small>
+                        <strong>Please try again</strong>.
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        <div class="col-lg-12 d-flex align-items-center">
+        
+        <form method="post">
+        {% csrf_token %}
+            <div class="flex form-row" style="max-width: 100%">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Name:</label>
+                        <input type="text" name="name" value="{% if input_data.name %}{{input_data.name}}{% endif %}" class="form-control {% if error.name %}is-invalid{% endif %}"  placeholder="Enter name">
+                        {% if error.name %}
+                        <div class="invalid-feedback">{{error.name}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Legal Form:</label>
+                        <input type="text" name="legal_form" value="{% if input_data.legal_form %}{{input_data.legal_form}}{% endif %}" class="form-control {% if error.legal_form %}is-invalid{% endif %}"  placeholder="Enter Legal Form">
+                        {% if error.legal_form %}
+                        <div class="invalid-feedback">{{error.legal_form}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Category:</label>
+                        <input type="text" name="categories" value="{% if input_data.categories %}{{input_data.categories}}{% endif %}" class="form-control {% if error.categories %}is-invalid{% endif %}"  placeholder="Enter categories">
+                        {% if error.categories %}
+                        <div class="invalid-feedback">{{error.categories}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Website:</label>
+                        <input type="text" name="website" value="{% if input_data.website %}{{input_data.website}}{% endif %}" class="form-control {% if error.website %}is-invalid{% endif %}"  placeholder="Enter website">
+                        {% if error.website %}
+                        <div class="invalid-feedback">{{error.website}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Internal Number:</label>
+                        <input type="text" name="internal_number" value="{% if input_data.internal_number %}{{input_data.internal_number}}{% endif %}" class="form-control {% if error.internal_number %}is-invalid{% endif %}"  placeholder="Enter Internal Number">
+                        {% if error.internal_number %}
+                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Phone:</label>
+                        <input type="text" name="phone" value="{% if input_data.phone %}{{input_data.phone}}{% endif %}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter Phone">
+                        {% if error.phone %}
+                        <div class="invalid-feedback">{{error.phone}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}

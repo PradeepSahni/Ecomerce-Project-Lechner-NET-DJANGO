@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+{% include "layouts/head_css.html" %}
+</head>
+<body class="layout-app layout-sticky-subnav ">
+        <div class="mdk-drawer-layout js-mdk-drawer-layout"
+            data-push
+            data-responsive-width="992px">
+            <div class="mdk-drawer-layout__content page-content">
+
+            
+            {% block content %}{% endblock  %}
+
+            {% include "layouts/footer.html" %}
+
+            </div>
+            <!-- // END drawer-layout__content -->
+
+            
+        </div>
+        <!-- // END drawer-layout -->
+
+        <!-- App Settings FAB -->
+        <div id="app-settings">
+            <app-settings layout-active="app"
+                    :layout-location="{
+                    'compact': 'compact-index.html',
+                    'mini': 'mini-index.html',
+                    'app': 'index.html',
+                    'boxed': 'boxed-index.html',
+                    'sticky': 'sticky-index.html',
+                    'default': 'fixed-index.html'
+                    }"
+                    sidebar-type="light"
+                    sidebar-variant="bg-body"></app-settings>
+        </div>
+        {% include "layouts/footer_js_web.html" %}
+</body>
+</html>
+    

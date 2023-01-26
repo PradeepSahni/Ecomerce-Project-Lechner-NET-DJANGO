@@ -1,0 +1,216 @@
+{% load static %}
+<!-- drawer -->
+<div class="mdk-drawer js-mdk-drawer"
+        id="default-drawer">
+    <div class="mdk-drawer__content">
+        <div class="sidebar sidebar-dark sidebar-left"
+                data-perfect-scrollbar>
+
+            <!-- Navbar toggler compact-index.html-->
+            <a href="javascript:void(0);"
+                class="navbar-toggler navbar-toggler-right navbar-toggler-custom d-flex align-items-center justify-content-center position-absolute right-0 top-0"
+                data-toggle="tooltip"
+                data-title="Switch to Compact Vertical Layout"
+                data-placement="right"
+                data-boundary="window">
+                <span class="material-icons">sync_alt</span>
+            </a>
+
+            <a href="{% url 'authapp:dashboard' %}"
+                class="sidebar-brand ">
+                <img  src="{% static 'assets/images/logo/accent-teal-100%402x.png' %}"> 
+                <span>LechnerNET</span>
+            </a>
+
+            <div class="sidebar-account mx-16pt mb-16pt dropdown">
+                <a href="{% url 'authapp:dashboard' %}"
+                    class="nav-link d-flex align-items-center dropdown-toggle"
+                    data-toggle="dropdown"
+                    data-caret="false">
+                    <img width="32"
+                            height="32"
+                            class="rounded-circle mr-8pt"
+                            src="{% static 'assets/images/people/50/guy-3.jpg' %}"
+                            alt="account" />
+                    <span class="flex d-flex flex-column mr-8pt">
+                        <span class="text-black-100">{{user.username|capfirst}}</span>
+                        <small class="text-black-50">{% if user.is_superuser %}Administrator {% else %} User {% endif %}</small>
+                    </span>
+                    <i class="material-icons text-black-20 icon-16pt">keyboard_arrow_down</i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-full dropdown-menu-caret-center">
+                    <div class="dropdown-header"><strong>Account</strong></div>
+                    {% comment %} <a class="dropdown-item"
+                        href="edit-account.html">Edit Account</a>
+                    <a class="dropdown-item"
+                        href="billing.html">Billing</a>
+                    <a class="dropdown-item"
+                        href="billing-history.html">Payments</a> {% endcomment %}
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'authapp:logout' %}">Logout</a>
+                    {% endif %}
+                    
+                    {% comment %} <div class="dropdown-divider"></div>
+                    <div class="dropdown-header"><strong>Select company</strong></div>
+                    <a href="#"
+                        class="dropdown-item active d-flex align-items-center">
+
+                        <div class="avatar avatar-sm mr-8pt">
+
+                            <span class="avatar-title rounded bg-primary">FM</span>
+
+                        </div>
+
+                        <small class="ml-4pt flex">
+                            <span class="d-flex flex-column">
+                                <strong class="text-black-100">FrontendMatter Inc.</strong>
+                                <span class="text-black-50">Administrator</span>
+                            </span>
+                        </small>
+                    </a>
+                    <a href="#"
+                        class="dropdown-item d-flex align-items-center">
+
+                        <div class="avatar avatar-sm mr-8pt">
+
+                            <span class="avatar-title rounded bg-accent">HH</span>
+
+                        </div>
+
+                        <small class="ml-4pt flex">
+                            <span class="d-flex flex-column">
+                                <strong class="text-black-100">LechnerNET.</strong>
+                                <span class="text-black-50">Publisher</span>
+                            </span>
+                        </small>
+                    </a> {% endcomment %}
+                </div>
+            </div>
+
+            {% comment %} <form action="https://huma.demo.frontendmatter.com/index.html"
+                    class="search-form flex-shrink-0 search-form--black sidebar-m-b sidebar-p-l mx-16pt pr-0">
+                <input type="text"
+                        class="form-control pl-0"
+                        placeholder="Search">
+                <button class="btn"
+                        type="submit"><i class="material-icons">search</i></button>
+            </form> {% endcomment %}
+
+            <div class="sidebar-heading">Overview</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item active">
+                    <a class="sidebar-menu-button"
+                        href="{% url 'authapp:dashboard' %}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_chart_outlined</span>
+                        <span class="sidebar-menu-text">Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-heading">Applications</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button js-sidebar-collapse"
+                        data-toggle="collapse"
+                        href="#enterprise_menu">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">donut_large</span>
+                        Enterprise
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse sm-indent"
+                        id="enterprise_menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'lechnerapp:products' %}">
+                                <span class="sidebar-menu-text">Products</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'lechnerapp:materials' %}">
+                                <span class="sidebar-menu-text">Materials</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'lechnerapp:moldingtools' %}">
+                                <span class="sidebar-menu-text">Molding Tools</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'lechnerapp:packages' %}">
+                                <span class="sidebar-menu-text">Packages</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'lechnerapp:externalparts' %}">
+                                <span class="sidebar-menu-text">External Parts</span>
+                            </a>
+                        </li>
+
+                        
+
+                    </ul>
+                </li>
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button"
+                        data-toggle="collapse"
+                        href="#account_menu">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">account_box</span>
+                        Account
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse sm-indent"
+                        id="account_menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'authapp:users' %}">
+                                <span class="sidebar-menu-text">Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'authapp:suppliers' %}">
+                                <span class="sidebar-menu-text">Suppliers</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="{% url 'authapp:customers' %}">
+                                <span class="sidebar-menu-text">Customers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+
+            {% comment %} <div class="sidebar-heading">UI</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button"
+                        data-toggle="collapse"
+                        href="#components_menu">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">tune</span>
+                        Components
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse sm-indent"
+                        id="components_menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button"
+                                href="ui-buttons.html">
+                                <span class="sidebar-menu-text">Buttons</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul> {% endcomment %}
+
+        </div>
+    </div>
+</div>
+<!-- // END drawer -->

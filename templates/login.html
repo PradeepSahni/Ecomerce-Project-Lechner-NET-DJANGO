@@ -1,0 +1,65 @@
+{% extends "layouts/web_layout.html" %}
+{% block content %}
+<div class="py-32pt py-lg-64pt">
+                    <div class="container-fluid page__container">
+                        <div class="col-lg-10 p-0 mx-auto">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                {% if form.errors %}
+                                <div class="alert bg-error text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <div class="d-flex flex-wrap align-items-start">
+                                        <div class="flex" style="min-width: 180px">
+                                            <small>
+                                                Your username and password didn't match.<strong>Please try again</strong>.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <h2 class="text-center">Admin Login</h2>
+                                {% endif %}
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div  class="alert bg-{% if message.tags %}{{message.tags}}{% endif %} alert-dismissible fade show text-white border-0" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <div class="d-flex flex-wrap align-items-start">
+                                    <div class="flex" style="min-width: 180px">
+                                        <small class="text-black-100">
+                                            {{ message }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6 mb-24pt mb-md-0">
+                                    
+                                    <form action method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label class="form-label" for="email">Your email:</label>
+                                            <input id="username" type="text" name="username" value="{{email}}" class="form-control" autocomplete="username" autocapitalize="none"  autofocus placeholder="Your username">
+                                        </div>
+                                        <div class="form-group mb-24pt">
+                                            <label class="form-label" for="password">Password:</label>
+                                            <input id="password" type="password" value="{{password}}" name="password" class="form-control" autocomplete="current-password" placeholder="Your password ...">
+                                            <p class="text-right"><a href="{% url 'authapp:password_reset' %}" class="small">Forgot your password?</a></p>
+                                        </div>
+                                        <input type="hidden" name="next" value="{{ next }}" />
+                                        <button type="submit" class="btn btn-accent">Login</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{% endblock  %}

@@ -1,0 +1,145 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<div class="border-bottom-2 py-32pt position-relative z-1">
+    <div class="container-fluid page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <h2 class="mb-0">Dashboard</h2>
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'authapp:dashboard' %}">Home</a></li>
+
+                    <li class="breadcrumb-item active">
+                        Customer
+                    </li>
+                </ol>
+                
+
+            </div>
+
+        </div>
+
+        <div class="row" role="tablist">
+            <div class="col-auto border-left">
+                <a href="{% url 'authapp:add_customer' %}" class="btn btn-accent">New Customer</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid page__container page-section">
+
+    <div class="page-separator">
+        <div class="page-separator__text">Customers List</div>
+        
+    </div>
+    <div class="row mb-32pt">
+        <div class="col-lg-12">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert bg-{% if message.tags %}{{ message.tags }}{% endif %} text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="d-flex flex-wrap align-items-start">
+                        <div class="flex" style="min-width: 180px">
+                            <small>
+                                {{ message }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-lg-12 d-flex align-items-center">
+            <div class="flex"
+                    style="max-width: 100%">
+
+                <div class="card m-0">
+
+                    <div class="table-responsive"
+                            data-toggle="lists"
+                            data-lists-sort-by="js-lists-values-user-username"
+                            data-lists-values='["js-lists-values-user-name", "js-lists-values-user-email", "js-lists-values-user-username", "js-lists-values-user-phone", "js-lists-values-user-address","js-lists-values-user-dob"]'>
+
+                        
+                        <div class="card-header">
+                            <form class="form-inline">
+                                <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
+                                <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
+                            </form>
+                        </div>
+
+                        <table class="table mb-0 thead-border-top-0 table-nowrap">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        <a href="javascript:void(0)"
+                                            class="sort"
+                                            data-sort="js-lists-values-user-name">Name</a>
+                                    </th>
+
+                                    <th style="width: 37px;"><a href="javascript:void(0)" class="sort"
+                                            data-sort="js-lists-values-user-email" >Legal form</a></th>
+
+                                    <th style="width: 120px;">
+                                        <a href="javascript:void(0)"
+                                            class="sort"
+                                            data-sort="js-lists-values-user-username">UID</a>
+                                    </th>
+                                    <th style="width: 51px;">
+                                        <a href="javascript:void(0)"
+                                            class="sort"
+                                            data-sort="js-lists-values-user-address">website</a>
+                                    </th>
+                                    <th style="width: 51px;">
+                                        <a href="javascript:void(0)"
+                                            class="sort"
+                                            data-sort="js-lists-values-user-dob">Internal Number</a>
+                                    </th>
+                                    <th style="width: 51px;">
+                                        <a href="javascript:void(0)"
+                                            class="sort"
+                                            data-sort="js-lists-values-user-phone">Phone</a>
+                                    </th>
+                                    <th style="width: 24px;"
+                                        class="pl-0"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="list" id="search">
+                            
+                            {% if customer_list|length > 0 %}
+                                {% for row in customer_list %}
+                                <tr>
+                                    <td class="js-lists-values-user-name">{% if row.name is not None %}{{row.name|capfirst}}{% endif %} </td>
+                                    <td class="js-lists-values-user-email">{% if row.legal_form is not None %}{{row.legal_form}}{% endif %}</td>
+                                    <td class="js-lists-values-user-username">{% if row.uid is not None %}{{row.uid}}{% endif %}</td>
+                                    <td class="js-lists-values-user-phone small">{% if row.website is not None %}{{row.website }}{% endif %}</td>
+                                    <td class="js-lists-values-user-address small">{% if row.internal_number is not None %}{{row.internal_number |capfirst}}{% endif %}</td>
+                                    <td class="js-lists-values-user-dob small">{% if row.phone is not None %}{{row.phone}}{% endif %}</td>
+                                    <td class="text-right pl-0"> 
+                                        <a href="{% url 'authapp:delete_customer' row.id %}" class="text-50" title="delete"><span class="material-icons text-danger">delete</span></a>
+                                        <a href="{% url 'authapp:edit_customer' row.id %}" class="text-50" title="edit"><span class="material-icons text-info">edit</span></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                    <tr class="text-center text-danger"><td colspan="5">there are no data </td> </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
+{% endblock  %}

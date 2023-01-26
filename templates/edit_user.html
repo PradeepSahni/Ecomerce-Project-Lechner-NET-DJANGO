@@ -1,0 +1,137 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<div class="border-bottom-2 py-32pt position-relative z-1">
+    <div class="container-fluid page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <h2 class="mb-0">Update User</h2>
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'authapp:dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">User </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row" role="tablist">
+            <div class="col-auto border-left">
+                <a href="{% url 'authapp:add_user' %}" class="btn btn-accent">New User</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid page__container page-section">
+    <div class="row mb-32pt">
+        <div class="col-lg-12">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert bg-{% if message.tags %}{{ message.tags }}{% endif %}" text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="d-flex flex-wrap align-items-start">
+                        <div class="flex" style="min-width: 180px">
+                            <small>
+                                {{ message }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% if form.errors %}
+            <div class="alert bg-error text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="d-flex flex-wrap align-items-start">
+                    <div class="flex" style="min-width: 180px">
+                        <small>
+                            <strong>Please try again</strong>.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        
+        
+        <div class="col-lg-12 d-flex align-items-center">
+        
+        <form method="post">
+        {% csrf_token %}
+            <div class="flex form-row" style="max-width: 100%">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label">Fisrt Name:</label>
+                        <input type="text" name="first_name" value="{{getUser.first_name}}" class="form-control {% if error.first_name %}is-invalid{% endif %}"  placeholder="Enter Fisrt name">
+                        {% if error.first_name %}
+                        <div class="invalid-feedback">{{error.first_name|striptags}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Last Name:</label>
+                        <input type="text" name="last_name" value="{{getUser.last_name}}" class="form-control {% if error.last_name %}is-invalid{% endif %}"  placeholder="Enter last name">
+                        {% if error.last_name %}
+                        <div class="invalid-feedback">{{error.last_name|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Email:</label>
+                        <input type="email" name="email" value="{{getUser.email}}" class="form-control {% if error.email %}is-invalid{% endif %}"  placeholder="Enter Email">
+                        {% if error.email %}
+                        <div class="invalid-feedback">{{error.email|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Username:</label>
+                        <input type="text" name="username" value="{{getUser.username}}" class="form-control {% if error.username %}is-invalid{% endif %}"  placeholder="Enter username">
+                        {% if error.username %}
+                        <div class="invalid-feedback">{{error.username|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Phone:</label>
+                        <input type="text" name="phone" value="{{getUser.userdetails.phone}}" class="form-control {% if error.phone %}is-invalid{% endif %}"  placeholder="Enter username">
+                        {% if error.phone %}
+                        <div class="invalid-feedback">{{error.phone|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Birthday:</label>
+                        <input type="hidden" name="dob" value="{{getUser.userdetails.dob|date:'Y-m-d'}}" class="form-control flatpickr-input {% if error.dob %}is-invalid{% endif %}" data-toggle="flatpickr">
+                        {% if error.dob %}
+                        <div class="invalid-feedback">{{error.dob|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Address:</label>
+                        <textarea rows="5" style="resize:none;" name="address" class="form-control {% if error.address %}is-invalid{% endif %}"  placeholder="Enter username" >{{getUser.userdetails.address}}</textarea>
+                        {% if error.address %}
+                        <div class="invalid-feedback">{{error.address|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}

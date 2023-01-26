@@ -1,0 +1,140 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<div class="border-bottom-2 py-32pt position-relative z-1">
+    <div class="container-fluid page__container d-flex flex-column flex-md-row align-items-center text-center text-sm-left">
+        <div class="flex d-flex flex-column flex-sm-row align-items-center mb-24pt mb-md-0">
+            <div class="mb-24pt mb-sm-0 mr-sm-24pt">
+                <h2 class="mb-0">New Molding Tools</h2>
+
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="{% url 'authapp:dashboard' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Molding Tools </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row" role="tablist">
+            <div class="col-auto border-left">
+                <a href="{% url 'lechnerapp:add_moldingtool' %}" class="btn btn-accent">New Molding Tool</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid page__container page-section">
+    <div class="row mb-32pt">
+        <div class="col-lg-12">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert bg-{% if message.tags %}{{ message.tags }}{% endif %} text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="d-flex flex-wrap align-items-start">
+                    <div class="flex" style="min-width: 180px">
+                        <small>
+                            {{ message }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% if error %}
+        <div class="alert bg-error text-white border-0 mb-0 alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="d-flex flex-wrap align-items-start">
+                <div class="flex" style="min-width: 180px">
+                    <small>
+                        <strong>Please try again</strong>.
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        <div class="col-lg-12 d-flex align-items-center">
+        
+        <form method="post">
+        {% csrf_token %}
+            <div class="flex form-row" style="max-width: 100%">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Molding Name:</label>
+                        <input type="text" name="name" value="{% if input_data.name %}{{input_data.name}}{% endif %}" class="form-control {% if error.name %}is-invalid{% endif %}"  placeholder="Enter Molding Name">
+                        {% if error.name %}
+                        <div class="invalid-feedback">{{error.name}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Molding Number:</label>
+                        <input type="text" name="legal_form" value="{% if input_data.legal_form %}{{input_data.legal_form}}{% endif %}" class="form-control {% if error.legal_form %}is-invalid{% endif %}"  placeholder="Enter Molding Number">
+                        {% if error.legal_form %}
+                        <div class="invalid-feedback">{{error.legal_form}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Owner/supplier:</label>
+                        <select name="website" value="{% if input_data.website %}{{input_data.website}}{% endif %}" class="form-control {% if error.website %}is-invalid{% endif %}" >
+                            <option>Supplier 1</option>
+                            <option>Supplier 2</option>
+                            <option>Supplier 3</option>
+                            <option>Supplier 4</option>
+                        </select>
+                        {% if error.categories %}
+                        <div class="invalid-feedback">{{error.categories}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >date:</label>
+                        <input type="date" name="website" value="{% if input_data.website %}{{input_data.website}}{% endif %}" class="form-control {% if error.website %}is-invalid{% endif %}">
+                        {% if error.website %}
+                        <div class="invalid-feedback">{{error.website}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >WareHouse:</label>
+                        <select name="phone" value="{% if input_data.phone %}{{input_data.phone}}{% endif %}" class="form-control {% if error.phone %}is-invalid{% endif %}" >
+                            <option >ware house 1</option>
+                            <option >ware house 1</option>
+                            <option >ware house 1</option>
+                            <option >ware house 1</option>
+                        </select>
+                        {% if error.internal_number %}
+                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Row Number:</label>
+                        <input type="text" name="internal_number" value="{% if input_data.internal_number %}{{input_data.internal_number}}{% endif %}" class="form-control {% if error.internal_number %}is-invalid{% endif %}"  placeholder="Enter Row Number">
+                        {% if error.internal_number %}
+                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="form-group">
+                        <label class="form-label" >Tools Location:</label>
+                        <input type="text" name="internal_number" value="{% if input_data.internal_number %}{{input_data.internal_number}}{% endif %}" class="form-control {% if error.internal_number %}is-invalid{% endif %}"  placeholder="Enter Tools location">
+                        {% if error.internal_number %}
+                        <div class="invalid-feedback">{{error.internal_number}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="col-md-12 col-lg-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}
